@@ -7,4 +7,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Benutzerverwaltung">
+      <HintPath>..\Benutzerverwaltung\bin\Debug\netcoreapp3.1\Benutzerverwaltung.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
