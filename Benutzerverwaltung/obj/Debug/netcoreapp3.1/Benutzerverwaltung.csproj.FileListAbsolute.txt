@@ -1,9 +1,0 @@
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\bin\Debug\netcoreapp3.1\Benutzerverwaltung.deps.json
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\bin\Debug\netcoreapp3.1\Benutzerverwaltung.dll
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\bin\Debug\netcoreapp3.1\Benutzerverwaltung.pdb
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\obj\Debug\netcoreapp3.1\Benutzerverwaltung.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\obj\Debug\netcoreapp3.1\Benutzerverwaltung.AssemblyInfoInputs.cache
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\obj\Debug\netcoreapp3.1\Benutzerverwaltung.AssemblyInfo.cs
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\obj\Debug\netcoreapp3.1\Benutzerverwaltung.csproj.CoreCompileInputs.cache
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\obj\Debug\netcoreapp3.1\Benutzerverwaltung.dll
-C:\Users\david\source\repos\Benutzerverwaltung\Benutzerverwaltung\obj\Debug\netcoreapp3.1\Benutzerverwaltung.pdb
