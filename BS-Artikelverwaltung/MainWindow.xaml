@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <ListView Margin="10" Name="Kundenliste">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding vorname}" />
+                    <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding nachname}" />
+                    <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding id}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Benutzerverwaltung;
 
 namespace BS_Artikelverwaltung {
     /// <summary>
@@ -20,6 +21,15 @@ namespace BS_Artikelverwaltung {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+
+            List<Kunde> kunden = new List<Kunde>();
+            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+
+            Kundenliste.ItemsSource = kunden;
+
         }
     }
 }
