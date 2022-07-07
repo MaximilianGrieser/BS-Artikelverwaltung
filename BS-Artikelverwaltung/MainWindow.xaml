@@ -4,10 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BS_Artikelverwaltung"
+        xmlns:data="clr-namespace:Benutzerverwaltung;assembly=Benutzerverwaltung"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListView Margin="10" Name="Kundenliste">
+        <ListBox Name="kunden">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Label Name="id" 
+                               Content="{Binding id, Mode=OneWay}"
+                               Grid.Column="0"></Label>
+                        <Label Name="vorname" 
+                               Content="{Binding vorname, Mode=OneWay}"
+                               Grid.Column="1"></Label>
+                        <Label Name="nachname" 
+                               Content="{Binding nachname, Mode=OneWay}"
+                               Grid.Column="2"></Label>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!--<ListView Margin="10" Name="kunden">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding vorname}" />
@@ -15,6 +33,6 @@
                     <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding id}" />
                 </GridView>
             </ListView.View>
-        </ListView>
+        </ListView>-->
     </Grid>
 </Window>

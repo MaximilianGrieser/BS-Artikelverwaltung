@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Klassen_und_OOP {
-    class Kunde {
+namespace Benutzerverwaltung {
+    public class Kunde {
         public Kunde(string zeile) {
             string[] item = zeile.Split(';');
             this.id = Convert.ToInt32(item[0]);

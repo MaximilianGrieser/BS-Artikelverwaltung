@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Klassen_und_OOP {
-    class Artikel {
+namespace Benutzerverwaltung {
+    public class Artikel {
         public Artikel(int id, int gewicht, int bestand, string bezeichnung, double preis) {
             this.id = id;
             this.gewicht = gewicht;

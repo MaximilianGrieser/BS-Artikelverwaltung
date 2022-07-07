@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Klassen_und_OOP {
-    class Bestellung {
+namespace Benutzerverwaltung {
+    public class Bestellung {
         public Bestellung(int id, int kundenId, DateTime datum, bool ausgeliefert) {
             this.id = id;
             this.kundenId = kundenId;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +22,14 @@ namespace BS_Artikelverwaltung {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-
-            List<Kunde> kunden = new List<Kunde>();
-            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
-            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
-            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
-            kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
-
-            Kundenliste.ItemsSource = kunden;
+            Supplier supply = new Supplier();
+            //ObservableCollection<Kunde> kunden = new ObservableCollection<Kunde>();
+            //kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            //kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            //kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            //kunden.Add(new Kunde("18293;Kiesel;Imre;1966-11-02;Gelsenkirchen"));
+            kunden.ItemsSource = supply.getKunden();
+            //Kundenliste.ItemsSource = kunden;
 
         }
     }

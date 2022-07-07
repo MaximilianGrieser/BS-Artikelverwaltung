@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Klassen_und_OOP {
-    class Bestellposition {
+namespace Benutzerverwaltung {
+    public class Bestellposition {
         public Bestellposition(int id, int idbestellung, int idartikel, int anzahl) {
             this.id = id;
             this.idbestellung = idbestellung;
