@@ -20,6 +20,19 @@ namespace Benutzerverwaltung {
             readCSV(this.bestellungen, "bestellungen.csv");
             readCSV(this.artikel, "artikel.csv");
             readCSV(this.bestellpos, "bestellpositionen.csv");
+
+
+            foreach(Kunde k in kunden) {
+                k.assignBestellungen(bestellungen);
+            }
+            foreach (Bestellung b in bestellungen) {
+                b.assignBestellpos(bestellpos);
+            }
+            foreach(Bestellposition bpos in bestellpos) {
+                bpos.assignArtikel(artikel);
+            }
+
+            Console.WriteLine("TEST");
             return kunden;
         }
 

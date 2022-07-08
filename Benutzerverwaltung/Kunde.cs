@@ -24,6 +24,12 @@ namespace Benutzerverwaltung {
         public DateTime geburtsdatum { get; set; }
         public string stadt { get; set; }
 
-
+        public void assignBestellungen(ObservableCollection<Bestellung> best) {
+            foreach (Bestellung bs in best) {
+                if(bs.kundenId == this.id) {
+                    this.bestellungen.Add(bs);
+                }
+            }
+        }
     }
 }
