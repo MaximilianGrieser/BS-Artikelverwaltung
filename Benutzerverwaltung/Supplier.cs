@@ -7,20 +7,33 @@ using System.IO;
 namespace Benutzerverwaltung {
     public class Supplier {
         public ObservableCollection<Kunde> kunden = new ObservableCollection<Kunde>();
-        
+        public ObservableCollection<Artikel> artikel = new ObservableCollection<Artikel>();
+        public ObservableCollection<Bestellung> bestellungen = new ObservableCollection<Bestellung>();
+        public ObservableCollection<Bestellposition> bestellpos = new ObservableCollection<Bestellposition>();
+
         public Supplier() {
             this.kunden = this.getKunden();
         }
 
         public ObservableCollection<Kunde> getKunden() {
-            this.kunden.Clear();
-            string[] s = File.ReadAllLines("kunden.csv");
-            for(int i = 1; i < s.Length; i++) {
-                kunden.Add(new Kunde(s[i]));
-            }
-
+            readCSV(this.kunden, "kunden.csv");
+            readCSV(this.bestellungen, "bestellungen.csv");
+            readCSV(this.artikel, "artikel.csv");
+            readCSV(this.bestellpos, "bestellpositionen.csv");
             return kunden;
         }
 
+        public void readCSV<T>(ObservableCollection<T> list, string dateiname) {
+            list.Clear();
+            string[] csv = File.ReadAllLines(dateiname);
+            int count = 0;
+            foreach (string s in csv) {
+                if (count == 0) {
+                    count = 1;
+                    continue;
+                }
+                list.Add((T)Activator.CreateInstance(typeof(T), new object[] { s }));
+            }
+        }
     }
 }

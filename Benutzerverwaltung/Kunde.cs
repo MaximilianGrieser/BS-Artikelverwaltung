@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Benutzerverwaltung {
     public class Kunde {
+
+        public ObservableCollection<Bestellung> bestellungen = new ObservableCollection<Bestellung>();
         public Kunde(string zeile) {
             string[] item = zeile.Split(';');
             this.id = Convert.ToInt32(item[0]);
