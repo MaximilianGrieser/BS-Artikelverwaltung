@@ -36,6 +36,11 @@ namespace Benutzerverwaltung {
             return kunden;
         }
 
+        public Kunde getKundeFromID(int id)
+        {
+            return kunden[id];
+        }
+
         public void readCSV<T>(ObservableCollection<T> list, string dateiname) {
             list.Clear();
             string[] csv = File.ReadAllLines(dateiname);
