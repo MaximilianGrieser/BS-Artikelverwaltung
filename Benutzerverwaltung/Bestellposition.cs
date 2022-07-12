@@ -11,7 +11,7 @@ namespace Benutzerverwaltung {
 
     public class Bestellposition {
 
-        public ObservableCollection<Artikel> artikel = new ObservableCollection<Artikel>();
+        public Artikel artikel;
         public Bestellposition(int id, int idbestellung, int idartikel, int anzahl) {
             this.id = id;
             this.idbestellung = idbestellung;
@@ -37,7 +37,7 @@ namespace Benutzerverwaltung {
         public void assignArtikel(ObservableCollection<Artikel> best) {
             foreach (Artikel art in best) {
                 if (art.id == this.idartikel) {
-                    this.artikel.Add(art);
+                    this.artikel = art;
                 }
             }
         }
