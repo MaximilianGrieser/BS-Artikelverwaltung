@@ -26,8 +26,13 @@ namespace BS_Artikelverwaltung
 
         public MainWindow()
         {
+            //var splashScreen = new SplashScreen("memes-loading.gif");
+            //splashScreen.Show(false);
+
             InitializeComponent();
             kunden.ItemsSource = supply.getKunden();
+
+            //splashScreen.Close(TimeSpan.FromSeconds(1));
         }
 
         private void kunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,6 +117,67 @@ namespace BS_Artikelverwaltung
             txtBestand.Text = "";
             txtPreis.Text = "";
             bestellpos.ItemsSource = null;
+        }
+
+        private void btnNewKunde_Click(object sender, RoutedEventArgs e)
+        {
+            NewKunde kWindow = new NewKunde();
+            kWindow.Show();
+        }
+
+        private void btnNewBestellung_Click(object sender, RoutedEventArgs e)
+        {
+            NewBestellung bWindow = new NewBestellung();
+            bWindow.Show();
+        }
+
+        private void btnNewArtikel_Click(object sender, RoutedEventArgs e)
+        {
+            NewArtikel aWindow = new NewArtikel();
+            aWindow.Show();
+        }
+
+        private void btnEditKunde_Click(object sender, RoutedEventArgs e)
+        {
+            if (kunden.SelectedIndex > -1)
+            {
+                NewKunde kWindow = new NewKunde(supply.getKundeFromID(kunden.SelectedIndex));
+                kWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bitte Kunden Auswählen um zu Bearbeiten");
+            }
+        }
+
+        private void btnEditBestellung_Click(object sender, RoutedEventArgs e)
+        {
+            if (bestellungen.SelectedIndex > -1)
+            {
+                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
+                NewBestellung bWindow = new NewBestellung(dummy.bestellungen[bestellungen.SelectedIndex]);
+                bWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bitte Bestellung Auswählen um zu Bearbeiten");
+            }
+        }
+
+        private void btnEditArtikel_Click(object sender, RoutedEventArgs e)
+        {
+            if (bestellpos.SelectedIndex > -1)
+            {
+                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
+                Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
+                Bestellposition duffy = dully.positionen[bestellpos.SelectedIndex];
+                NewArtikel aWindow = new NewArtikel(duffy.artikel);
+                aWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bitte Bestellung Auswählen um zu Bearbeiten");
+            }
         }
     }
 }

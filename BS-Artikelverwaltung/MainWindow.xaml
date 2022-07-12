@@ -14,10 +14,50 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="5*" />
+            <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Kunde:" FontSize="20"/>
+            <Button Grid.Column="1" Grid.Row="0" Name="btnNewKunde" Click="btnNewKunde_Click">Neuer Kunde</Button>
+            <Button Grid.Column="2" Grid.Row="0" Name="btnEditKunde" Click="btnEditKunde_Click">Kunde Bearbeiten</Button>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Bestellung:" FontSize="20"/>
+            <Button Grid.Column="1" Grid.Row="0" Name="btnNewBestellung" Click="btnNewBestellung_Click">Neue Bestellung</Button>
+            <Button Grid.Column="2" Grid.Row="0" Name="btnEditBestellung" Click="btnEditBestellung_Click">Bestellung Bearbeiten</Button>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Artikel:" FontSize="20"/>
+            <Button Grid.Column="1" Grid.Row="0" Name="btnNewArtikel" Click="btnNewArtikel_Click">Neuer Artikel</Button>
+            <Button Grid.Column="2" Grid.Row="0" Name="btnEditArtikel" Click="btnEditArtikel_Click">Artikel Bearbeiten</Button>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="2*" />
@@ -40,7 +80,7 @@
             <Label Grid.Column="0" Grid.Row="4" Content="Stadt:"/>
             <TextBox Grid.Column="1" Grid.Row="4" Name="txtStadt" />
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="0">
+        <Grid Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="2*" />
@@ -60,7 +100,7 @@
             <Label Grid.Column="0" Grid.Row="3" Content="Ausgeliefert"/>
             <TextBox Grid.Column="1" Grid.Row="3" Name="txtAusgeliefert" />
         </Grid>
-        <Grid Grid.Column="2" Grid.Row="0">
+        <Grid Grid.Column="2" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="2*" />
@@ -80,7 +120,7 @@
             <Label Grid.Column="0" Grid.Row="2" Content="IDArtikel"/>
             <TextBox Grid.Column="1" Grid.Row="2" Name="txtIDBestellposArtikel" />
         </Grid>
-        <ListBox Grid.Column="0" Grid.Row="1" Name="kunden" SelectionChanged="kunden_SelectionChanged">
+        <ListBox Grid.Column="0" Grid.Row="2" Name="kunden" SelectionChanged="kunden_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
@@ -97,7 +137,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Column="1" Grid.Row="1" Name="bestellungen" SelectionChanged="bestellungen_SelectionChanged">
+        <ListBox Grid.Column="1" Grid.Row="2" Name="bestellungen" SelectionChanged="bestellungen_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
@@ -114,13 +154,13 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid Grid.Column="2" Grid.Row="1">
+        <Grid Grid.Column="2" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="15*" />
             </Grid.RowDefinitions>
             <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.ColumnDefinitions>
