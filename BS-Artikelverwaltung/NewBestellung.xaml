@@ -7,6 +7,53 @@
         mc:Ignorable="d"
         Title="NewBestellung" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListBox Grid.Column="0" Grid.Row="0" Name="kunden">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Label Name="id" 
+                               Content="{Binding id, Mode=OneWay}"
+                               Grid.Column="0"></Label>
+                        <Label Name="vorname" 
+                               Content="{Binding vorname, Mode=OneWay}"
+                               Grid.Column="1"></Label>
+                        <Label Name="nachname" 
+                               Content="{Binding nachname, Mode=OneWay}"
+                               Grid.Column="2"></Label>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Bestellung:" FontSize="20"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="ID:"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellung" />
+            <Label Grid.Column="0" Grid.Row="2" Content="IDKunde:"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Name="txtIDBestellungKunde" />
+            <Label Grid.Column="0" Grid.Row="3" Content="Datum:"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Name="txtDatum" />
+            <Label Grid.Column="0" Grid.Row="4" Content="Ausgeliefert"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Name="txtAusgeliefert" />
+            <Button Grid.Column="1" Grid.Row="5" Name="btnSaveBestellung" Click="btnSaveBestellung_Click">Speichern</Button>
+        </Grid>
     </Grid>
 </Window>

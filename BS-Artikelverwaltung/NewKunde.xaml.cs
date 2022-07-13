@@ -18,14 +18,43 @@ namespace BS_Artikelverwaltung
     /// </summary>
     public partial class NewKunde : Window
     {
-        public NewKunde()
+        Supplier supply;
+
+        public NewKunde(Supplier supply)
         {
+            this.supply = supply;
             InitializeComponent();
+            lblKunde.Content = "Neuen Kunden Erstellen:";
         }
 
-        public NewKunde(Kunde kunde)
+        public NewKunde(Supplier supply, Kunde kunde)
         {
+            this.supply = supply;
             InitializeComponent();
+            lblKunde.Content = "Exisiterenden Kunden Bearbeiten:";
+
+            txtIDKunde.Text = kunde.id.ToString();
+            txtVorname.Text = kunde.vorname;
+            txtNachname.Text = kunde.nachname;
+            txtgeburt.Text = kunde.geburtsdatum.ToString();
+            txtStadt.Text = kunde.stadt;
+        }
+
+        private void btnSaveKunde_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtIDKunde.Text != "")
+            {
+                string line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
+                Kunde k = new Kunde(line);
+                supply.writeKundeToList(k, Convert.ToInt32(txtIDKunde.Text));
+            }
+            else
+            {
+                string line = "-1;" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
+                Kunde k = new Kunde(line);
+                supply.writeKundeToList(k);
+            }
+            this.Close();
         }
     }
 }

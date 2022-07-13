@@ -26,5 +26,10 @@ namespace BS_Artikelverwaltung
         {
             InitializeComponent();
         }
+
+        private void btnSaveArtikel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

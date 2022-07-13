@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="NewKunde" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Name="lblKunde" Content="Kunde:" FontSize="20"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="ID:"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDKunde" IsReadOnly="True"/>
+        <Label Grid.Column="0" Grid.Row="2" Content="Vorname:"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="txtVorname" />
+        <Label Grid.Column="0" Grid.Row="3" Content="Nachname:"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Name="txtNachname" />
+        <Label Grid.Column="0" Grid.Row="4" Content="Geburtsdatum:"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="txtgeburt" />
+        <Label Grid.Column="0" Grid.Row="5" Content="Stadt:"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Name="txtStadt" />
+        <Button Grid.Column="1" Grid.Row="6" Name="btnSaveKunde" Click="btnSaveKunde_Click">Speichern</Button>
     </Grid>
 </Window>

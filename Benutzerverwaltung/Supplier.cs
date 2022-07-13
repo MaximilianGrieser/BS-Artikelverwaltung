@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 namespace Benutzerverwaltung {
     public class Supplier {
@@ -39,6 +40,19 @@ namespace Benutzerverwaltung {
         public Kunde getKundeFromID(int id)
         {
             return kunden[id];
+        }
+
+        public void writeKundeToList(Kunde kunde, int id)
+        {
+            kunden[kunden.IndexOf(kunden.Where(i => i.id == id).FirstOrDefault())] = kunde;
+        }
+
+        public void writeKundeToList(Kunde kunde)
+        {
+            //Assuming list is orderd ascending by Kunden IDs
+            int lastID = kunden.Last().id;
+            kunde.id = lastID + 1;
+            kunden.Add(kunde);
         }
 
         public void readCSV<T>(ObservableCollection<T> list, string dateiname) {

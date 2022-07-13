@@ -121,7 +121,7 @@ namespace BS_Artikelverwaltung
 
         private void btnNewKunde_Click(object sender, RoutedEventArgs e)
         {
-            NewKunde kWindow = new NewKunde();
+            NewKunde kWindow = new NewKunde(supply);
             kWindow.Show();
         }
 
@@ -141,7 +141,7 @@ namespace BS_Artikelverwaltung
         {
             if (kunden.SelectedIndex > -1)
             {
-                NewKunde kWindow = new NewKunde(supply.getKundeFromID(kunden.SelectedIndex));
+                NewKunde kWindow = new NewKunde(supply, supply.getKundeFromID(kunden.SelectedIndex));
                 kWindow.Show();
             }
             else

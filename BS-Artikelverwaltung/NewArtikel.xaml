@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="NewArtikel" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Artikel:" FontSize="20"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="ID:"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellpos" />
+        <Label Grid.Column="0" Grid.Row="2" Content="Beschreibung"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="txtBeschreibung" />
+        <Label Grid.Column="0" Grid.Row="3" Content="Gewicht"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Name="txtGewicht" />
+        <Label Grid.Column="0" Grid.Row="4" Content="Bestand"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="txtBestand" />
+        <Label Grid.Column="0" Grid.Row="5" Content="Preis"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Name="txtPreis" />
+        <Button Grid.Column="1" Grid.Row="6" Name="btnSaveArtikel" Click="btnSaveArtikel_Click">Speichern</Button>
     </Grid>
 </Window>
