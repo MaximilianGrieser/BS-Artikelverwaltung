@@ -26,6 +26,7 @@ namespace BS_Artikelverwaltung
     //- NewBestellung leere Bestellung speichern bug
     //- Objekte löschen ?
     //- User Error abfangen
+    //- Kundensuche Implementieren
 
 
 
