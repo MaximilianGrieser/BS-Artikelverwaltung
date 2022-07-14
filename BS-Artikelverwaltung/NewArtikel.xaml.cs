@@ -18,18 +18,42 @@ namespace BS_Artikelverwaltung
     /// </summary>
     public partial class NewArtikel : Window
     {
-        public NewArtikel()
+        Supplier supply;
+
+        public NewArtikel(Supplier supply)
         {
+            this.supply = supply;
             InitializeComponent();
+            lblArtikel.Content = "Neuen Artikel Erstellen:";
         }
-        public NewArtikel(Artikel artikel)
+
+        public NewArtikel(Supplier supply, Artikel artikel)
         {
+            this.supply = supply;
             InitializeComponent();
+            lblArtikel.Content = "Exisiterenden Artikel Bearbeiten:";
+
+            txtIDArtikel.Text = artikel.id.ToString();
+            txtBeschreibung.Text = artikel.bezeichnung;
+            txtGewicht.Text = artikel.gewicht.ToString();
+            txtBestand.Text = artikel.bestand.ToString();
+            txtPreis.Text = artikel.preis.ToString();
         }
 
         private void btnSaveArtikel_Click(object sender, RoutedEventArgs e)
         {
-
+            string line;
+            if (txtIDArtikel.Text != "")
+            {
+                line = txtIDArtikel.Text + ";" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
+            }
+            else
+            {
+                line = "-1;" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
+            }
+            Artikel a = new Artikel(line);
+            supply.writeArtikelToList(a);
+            this.Close();
         }
     }
 }

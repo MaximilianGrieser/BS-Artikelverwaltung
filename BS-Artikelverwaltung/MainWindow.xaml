@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BS_Artikelverwaltung"
         xmlns:data="clr-namespace:Benutzerverwaltung;assembly=Benutzerverwaltung"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1300">
+        Title="Bestellverwaltung" Height="800" Width="1300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -70,15 +70,15 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="ID:"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Name="txtIDKunde" />
+            <TextBox Grid.Column="1" Grid.Row="0" Name="txtIDKunde" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="1" Content="Vorname:"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Name="txtVorname" />
+            <TextBox Grid.Column="1" Grid.Row="1" Name="txtVorname" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="2" Content="Nachname:"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Name="txtNachname" />
+            <TextBox Grid.Column="1" Grid.Row="2" Name="txtNachname" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="3" Content="Geburtsdatum:"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Name="txtgeburt" />
+            <TextBox Grid.Column="1" Grid.Row="3" Name="txtgeburt" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="4" Content="Stadt:"/>
-            <TextBox Grid.Column="1" Grid.Row="4" Name="txtStadt" />
+            <TextBox Grid.Column="1" Grid.Row="4" Name="txtStadt" IsReadOnly="True"/>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -92,13 +92,17 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="ID:"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Name="txtIDBestellung" />
+            <TextBox Grid.Column="1" Grid.Row="0" Name="txtIDBestellung" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="1" Content="IDKunde:"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellungKunde" />
+            <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellungKunde" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="2" Content="Datum:"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Name="txtDatum" />
+            <TextBox Grid.Column="1" Grid.Row="2" Name="txtDatum" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="3" Content="Ausgeliefert"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Name="txtAusgeliefert" />
+            <CheckBox Grid.Column="1" Grid.Row="3" Name="cbxAusgeliefert" IsHitTestVisible="False" Focusable="False">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
         </Grid>
         <Grid Grid.Column="2" Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -112,13 +116,13 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="ID:"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Name="txtIDBestellpos" />
+            <TextBox Grid.Column="1" Grid.Row="0" Name="txtIDBestellpos" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="1" Content="IDBestellung:"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellposBestellung" />
+            <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellposBestellung" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="3" Content="Anzahl"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Name="txtAnzahl" />
+            <TextBox Grid.Column="1" Grid.Row="3" Name="txtAnzahl" IsReadOnly="True"/>
             <Label Grid.Column="0" Grid.Row="2" Content="IDArtikel"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Name="txtIDBestellposArtikel" />
+            <TextBox Grid.Column="1" Grid.Row="2" Name="txtIDBestellposArtikel" IsReadOnly="True"/>
         </Grid>
         <ListBox Grid.Column="0" Grid.Row="2" Name="kunden" SelectionChanged="kunden_SelectionChanged">
             <ListBox.ItemTemplate>
@@ -174,13 +178,13 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Content="Beschreibung"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Name="txtBeschreibung" />
+                <TextBox Grid.Column="1" Grid.Row="0" Name="txtBeschreibung" IsReadOnly="True"/>
                 <Label Grid.Column="0" Grid.Row="1" Content="Gewicht"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Name="txtGewicht" />
+                <TextBox Grid.Column="1" Grid.Row="1" Name="txtGewicht" IsReadOnly="True"/>
                 <Label Grid.Column="0" Grid.Row="2" Content="Bestand"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Name="txtBestand" />
+                <TextBox Grid.Column="1" Grid.Row="2" Name="txtBestand" IsReadOnly="True"/>
                 <Label Grid.Column="0" Grid.Row="3" Content="Preis"/>
-                <TextBox Grid.Column="1" Grid.Row="3" Name="txtPreis" />
+                <TextBox Grid.Column="1" Grid.Row="3" Name="txtPreis" IsReadOnly="True"/>
             </Grid>
             <ListBox Grid.Column="2" Grid.Row="1" Name="bestellpos" SelectionChanged="bestellpos_SelectionChanged">
                 <ListBox.ItemTemplate>

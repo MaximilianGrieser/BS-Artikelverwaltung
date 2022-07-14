@@ -35,6 +35,7 @@ namespace Benutzerverwaltung {
         public int anzahl { get; set; }
 
         public void assignArtikel(ObservableCollection<Artikel> best) {
+            this.artikel = null;
             foreach (Artikel art in best) {
                 if (art.id == this.idartikel) {
                     this.artikel = art;

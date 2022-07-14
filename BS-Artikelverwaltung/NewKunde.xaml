@@ -21,8 +21,8 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Name="lblKunde" Content="Kunde:" FontSize="20"/>
-        <Label Grid.Column="0" Grid.Row="1" Content="ID:"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDKunde" IsReadOnly="True"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="ID:" ToolTip="IDs werden vom System automatisch verwaltet"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDKunde" IsReadOnly="True" ToolTip="IDs werden vom System automatisch verwaltet"/>
         <Label Grid.Column="0" Grid.Row="2" Content="Vorname:"/>
         <TextBox Grid.Column="1" Grid.Row="2" Name="txtVorname" />
         <Label Grid.Column="0" Grid.Row="3" Content="Nachname:"/>

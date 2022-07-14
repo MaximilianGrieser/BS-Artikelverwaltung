@@ -20,9 +20,9 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Content="Artikel:" FontSize="20"/>
-        <Label Grid.Column="0" Grid.Row="1" Content="ID:"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDBestellpos" />
+        <Label Grid.Column="0" Grid.Row="0" Name="lblArtikel" Content="Artikel:" FontSize="20"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="ID:" ToolTip="IDs werden vom System automatisch verwaltet"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Name="txtIDArtikel" IsReadOnly="True" ToolTip="IDs werden vom System automatisch verwaltet"/>
         <Label Grid.Column="0" Grid.Row="2" Content="Beschreibung"/>
         <TextBox Grid.Column="1" Grid.Row="2" Name="txtBeschreibung" />
         <Label Grid.Column="0" Grid.Row="3" Content="Gewicht"/>

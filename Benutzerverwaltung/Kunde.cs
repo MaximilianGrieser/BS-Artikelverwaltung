@@ -25,6 +25,7 @@ namespace Benutzerverwaltung {
         public string stadt { get; set; }
 
         public void assignBestellungen(ObservableCollection<Bestellung> best) {
+            this.bestellungen.Clear();
             foreach (Bestellung bs in best) {
                 if(bs.kundenId == this.id) {
                     this.bestellungen.Add(bs);

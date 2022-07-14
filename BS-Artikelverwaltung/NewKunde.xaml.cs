@@ -42,18 +42,17 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveKunde_Click(object sender, RoutedEventArgs e)
         {
+            string line;
             if (txtIDKunde.Text != "")
             {
-                string line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
-                Kunde k = new Kunde(line);
-                supply.writeKundeToList(k, Convert.ToInt32(txtIDKunde.Text));
+                line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
             }
             else
             {
-                string line = "-1;" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
-                Kunde k = new Kunde(line);
-                supply.writeKundeToList(k);
+                line = "-1;" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
             }
+            Kunde k = new Kunde(line);
+            supply.writeKundeToList(k);
             this.Close();
         }
     }

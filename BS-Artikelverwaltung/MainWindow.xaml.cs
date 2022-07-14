@@ -17,6 +17,18 @@ using Benutzerverwaltung;
 
 namespace BS_Artikelverwaltung
 {
+    //TODOS
+    //- Save To File
+    //- Label Font Size anpassung allgemein
+    //- Artikel List mit artikel bezeichnung und anzahl ergänzen
+    //- NewBestellung edit bespos
+    //- NewBestellung delete bespos
+    //- NewBestellung leere Bestellung speichern bug
+    //- Objekte löschen ?
+    //- User Error abfangen
+
+
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -40,7 +52,7 @@ namespace BS_Artikelverwaltung
             clearBesFields();
             if (kunden.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
+                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
 
                 txtIDKunde.Text = dummy.id.ToString();
                 txtVorname.Text = dummy.vorname;
@@ -60,13 +72,13 @@ namespace BS_Artikelverwaltung
             clearArtikelFields();
             if (bestellungen.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
+                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
                 Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
 
                 txtIDBestellung.Text = dully.id.ToString();
                 txtIDBestellungKunde.Text = dully.kundenId.ToString();
                 txtDatum.Text = dully.datum.ToString();
-                txtAusgeliefert.Text = dully.ausgeliefert.ToString();
+                cbxAusgeliefert.IsChecked = dully.ausgeliefert;
 
                 if (dully.positionen != null)
                 {
@@ -79,7 +91,7 @@ namespace BS_Artikelverwaltung
         {
             if (bestellpos.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
+                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
                 Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
                 Bestellposition duffy = dully.positionen[bestellpos.SelectedIndex];
                 Artikel duppy = duffy.artikel;
@@ -101,7 +113,7 @@ namespace BS_Artikelverwaltung
             txtIDBestellung.Text = "";
             txtIDBestellungKunde.Text = "";
             txtDatum.Text = "";
-            txtAusgeliefert.Text = "";
+            cbxAusgeliefert.IsChecked = false;
             clearArtikelFields();
         }
 
@@ -122,26 +134,26 @@ namespace BS_Artikelverwaltung
         private void btnNewKunde_Click(object sender, RoutedEventArgs e)
         {
             NewKunde kWindow = new NewKunde(supply);
-            kWindow.Show();
+            kWindow.ShowDialog();
         }
 
         private void btnNewBestellung_Click(object sender, RoutedEventArgs e)
         {
-            NewBestellung bWindow = new NewBestellung();
-            bWindow.Show();
+            NewBestellung bWindow = new NewBestellung(supply);
+            bWindow.ShowDialog();
         }
 
         private void btnNewArtikel_Click(object sender, RoutedEventArgs e)
         {
-            NewArtikel aWindow = new NewArtikel();
-            aWindow.Show();
+            NewArtikel aWindow = new NewArtikel(supply);
+            aWindow.ShowDialog();
         }
 
         private void btnEditKunde_Click(object sender, RoutedEventArgs e)
         {
             if (kunden.SelectedIndex > -1)
             {
-                NewKunde kWindow = new NewKunde(supply, supply.getKundeFromID(kunden.SelectedIndex));
+                NewKunde kWindow = new NewKunde(supply, supply.getKundeFromIndex(kunden.SelectedIndex));
                 kWindow.Show();
             }
             else
@@ -154,8 +166,8 @@ namespace BS_Artikelverwaltung
         {
             if (bestellungen.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
-                NewBestellung bWindow = new NewBestellung(dummy.bestellungen[bestellungen.SelectedIndex]);
+                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
+                NewBestellung bWindow = new NewBestellung(supply, dummy.bestellungen[bestellungen.SelectedIndex]);
                 bWindow.Show();
             }
             else
@@ -168,10 +180,10 @@ namespace BS_Artikelverwaltung
         {
             if (bestellpos.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromID(kunden.SelectedIndex);
+                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
                 Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
                 Bestellposition duffy = dully.positionen[bestellpos.SelectedIndex];
-                NewArtikel aWindow = new NewArtikel(duffy.artikel);
+                NewArtikel aWindow = new NewArtikel(supply, duffy.artikel);
                 aWindow.Show();
             }
             else

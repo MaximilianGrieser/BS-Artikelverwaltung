@@ -13,49 +13,117 @@ namespace Benutzerverwaltung {
         public ObservableCollection<Bestellposition> bestellpos = new ObservableCollection<Bestellposition>();
 
         public Supplier() {
-            this.kunden = this.getKunden();
-        }
-
-        public ObservableCollection<Kunde> getKunden() {
             readCSV(this.kunden, "kunden.csv");
             readCSV(this.bestellungen, "bestellungen.csv");
             readCSV(this.artikel, "artikel.csv");
             readCSV(this.bestellpos, "bestellpositionen.csv");
+            buildConstruct();
+        }
 
-
-            foreach(Kunde k in kunden) {
-                k.assignBestellungen(bestellungen);
-            }
-            foreach (Bestellung b in bestellungen) {
-                b.assignBestellpos(bestellpos);
-            }
-            foreach(Bestellposition bpos in bestellpos) {
-                bpos.assignArtikel(artikel);
-            }
-
-            Console.WriteLine("TEST");
+        public ObservableCollection<Kunde> getKunden() {
             return kunden;
         }
 
-        public Kunde getKundeFromID(int id)
+        public ObservableCollection<Artikel> getArtikel()
+        {
+            return artikel;
+        }
+
+        public int getIndexFromKundenID(int id)
+        {
+            return kunden.IndexOf(kunden.Where(i => i.id == id).FirstOrDefault());
+        }
+
+        public Kunde getKundeFromIndex(int id)
         {
             return kunden[id];
         }
 
-        public void writeKundeToList(Kunde kunde, int id)
+        public int getIndexFromArtikelID(int id)
         {
-            kunden[kunden.IndexOf(kunden.Where(i => i.id == id).FirstOrDefault())] = kunde;
+            return artikel.IndexOf(artikel.Where(i => i.id == id).FirstOrDefault());
+        }
+
+        public Artikel getArtikelFromIndex(int id)
+        {
+            return artikel[id];
         }
 
         public void writeKundeToList(Kunde kunde)
         {
-            //Assuming list is orderd ascending by Kunden IDs
-            int lastID = kunden.Last().id;
-            kunde.id = lastID + 1;
-            kunden.Add(kunde);
+            if (kunde.id == -1)
+            {
+                kunden[kunden.IndexOf(kunden.Where(i => i.id == kunde.id).FirstOrDefault())] = kunde;
+            }
+            else
+            {
+                //Assuming list is orderd ascending by Kunden IDs
+                int lastID = kunden.Last().id;
+                kunde.id = lastID + 1;
+                kunden.Add(kunde);
+            }
         }
 
-        public void readCSV<T>(ObservableCollection<T> list, string dateiname) {
+        public void writeArtikelToList(Artikel a)
+        {
+            if (a.id == -1)
+            {
+                artikel[artikel.IndexOf(artikel.Where(i => i.id == a.id).FirstOrDefault())] = a;
+            }
+            else
+            {
+                //Assuming list is orderd ascending by Artikel IDs
+                int lastID = artikel.Last().id;
+                a.id = lastID + 1;
+                artikel.Add(a);
+            }
+        }
+
+        public void writeBestellungToList(Bestellung b)
+        {
+            // edit bespos ?
+            foreach (Bestellposition bp in b.positionen)
+            {
+                if (bp.id == -1)
+                {
+                    //Assuming list is orderd ascending by Bestellpositionen IDs
+                    int lastID = bestellpos.Last().id;
+                    bp.id = lastID + 1;
+                    bestellpos.Add(bp);
+                }
+            }
+
+            if (b.id != -1)
+            {
+                bestellungen[bestellungen.IndexOf(bestellungen.Where(i => i.id == b.id).FirstOrDefault())] = b;
+            }
+            else
+            {
+                //Assuming list is orderd ascending by Bestellungen IDs
+                int lasID = bestellungen.Last().id;
+                b.id = lasID + 1;
+                bestellungen.Add(b);
+            }            
+            buildConstruct();
+        }
+
+        private void buildConstruct()
+        {
+            foreach (Kunde k in kunden)
+            {
+                k.assignBestellungen(bestellungen);
+            }
+            foreach (Bestellung b in bestellungen)
+            {
+                b.assignBestellpos(bestellpos);
+            }
+            foreach (Bestellposition bpos in bestellpos)
+            {
+                bpos.assignArtikel(artikel);
+            }
+        }
+
+        private void readCSV<T>(ObservableCollection<T> list, string dateiname) {
             list.Clear();
             string[] csv = File.ReadAllLines(dateiname);
             int count = 0;
