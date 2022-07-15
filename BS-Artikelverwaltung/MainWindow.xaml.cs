@@ -192,5 +192,10 @@ namespace BS_Artikelverwaltung
                 MessageBox.Show("Bitte Bestellung Auswählen um zu Bearbeiten");
             }
         }
+
+        private void txtKundeSuche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            kunden.ItemsSource = supply.searchKunden(txtKundeSuche.Text);
+        }
     }
 }

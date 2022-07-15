@@ -24,6 +24,20 @@ namespace Benutzerverwaltung {
             return kunden;
         }
 
+        public ObservableCollection<Kunde> searchKunden(string searchWord)
+        {
+            ObservableCollection<Kunde> results = new ObservableCollection<Kunde>();
+            string swUpper = searchWord.ToUpper();
+            foreach (Kunde k in kunden)
+            {
+                if (k.id.ToString().Contains(searchWord) || k.vorname.ToUpper().Contains(swUpper) || k.nachname.ToUpper().Contains(swUpper))
+                {
+                    results.Add(k);
+                }
+            }
+            return results;
+        }
+
         public ObservableCollection<Artikel> getArtikel()
         {
             return artikel;
