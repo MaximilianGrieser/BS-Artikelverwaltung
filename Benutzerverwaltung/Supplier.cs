@@ -38,6 +38,34 @@ namespace Benutzerverwaltung {
             return results;
         }
 
+        public ObservableCollection<Bestellung> searchBestellungen(Kunde k, string searchWord)
+        {
+            ObservableCollection<Bestellung> results = new ObservableCollection<Bestellung>();
+            string swUpper = searchWord.ToUpper();
+            foreach (Bestellung b in k.bestellungen)
+            {
+                if (b.id.ToString().Contains(searchWord) || b.datum.ToString("M.d.yyyy").ToUpper().Contains(swUpper))
+                {
+                    results.Add(b);
+                }
+            }
+            return results;
+        }
+
+        public ObservableCollection<Bestellposition> searchBespos(Bestellung b, string searchWord)
+        {
+            ObservableCollection<Bestellposition> results = new ObservableCollection<Bestellposition>();
+            string swUpper = searchWord.ToUpper();
+            foreach (Bestellposition bp in b.positionen)
+            {
+                if (bp.id.ToString().Contains(searchWord))
+                {
+                    results.Add(bp);
+                }
+            }
+            return results;
+        }
+
         public ObservableCollection<Artikel> getArtikel()
         {
             return artikel;
@@ -48,19 +76,9 @@ namespace Benutzerverwaltung {
             return kunden.IndexOf(kunden.Where(i => i.id == id).FirstOrDefault());
         }
 
-        public Kunde getKundeFromIndex(int id)
-        {
-            return kunden[id];
-        }
-
         public int getIndexFromArtikelID(int id)
         {
             return artikel.IndexOf(artikel.Where(i => i.id == id).FirstOrDefault());
-        }
-
-        public Artikel getArtikelFromIndex(int id)
-        {
-            return artikel[id];
         }
 
         public void writeKundeToList(Kunde kunde)
@@ -95,7 +113,6 @@ namespace Benutzerverwaltung {
 
         public void writeBestellungToList(Bestellung b)
         {
-            // edit bespos ?
             foreach (Bestellposition bp in b.positionen)
             {
                 if (bp.id == -1)

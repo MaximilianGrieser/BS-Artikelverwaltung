@@ -18,6 +18,7 @@ using Benutzerverwaltung;
 namespace BS_Artikelverwaltung
 {
     //TODOS
+    //- Splashscreen
     //- Save To File
     //- Label Font Size anpassung allgemein
     //- Artikel List mit artikel bezeichnung und anzahl ergänzen
@@ -26,7 +27,8 @@ namespace BS_Artikelverwaltung
     //- NewBestellung leere Bestellung speichern bug
     //- Objekte löschen ?
     //- User Error abfangen
-    //- Kundensuche Implementieren
+    //- Kunden suche bei neuer bestellung
+    //- Artikel suche bei neuer bestellung
 
 
 
@@ -53,7 +55,7 @@ namespace BS_Artikelverwaltung
             clearBesFields();
             if (kunden.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
+                Kunde dummy = kunden.SelectedItem as Kunde;
 
                 txtIDKunde.Text = dummy.id.ToString();
                 txtVorname.Text = dummy.vorname;
@@ -73,8 +75,7 @@ namespace BS_Artikelverwaltung
             clearArtikelFields();
             if (bestellungen.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
-                Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
+                Bestellung dully = bestellungen.SelectedItem as Bestellung;
 
                 txtIDBestellung.Text = dully.id.ToString();
                 txtIDBestellungKunde.Text = dully.kundenId.ToString();
@@ -92,9 +93,7 @@ namespace BS_Artikelverwaltung
         {
             if (bestellpos.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
-                Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
-                Bestellposition duffy = dully.positionen[bestellpos.SelectedIndex];
+                Bestellposition duffy = bestellpos.SelectedItem as Bestellposition;
                 Artikel duppy = duffy.artikel;
 
                 txtIDBestellpos.Text = duffy.id.ToString();
@@ -154,7 +153,7 @@ namespace BS_Artikelverwaltung
         {
             if (kunden.SelectedIndex > -1)
             {
-                NewKunde kWindow = new NewKunde(supply, supply.getKundeFromIndex(kunden.SelectedIndex));
+                NewKunde kWindow = new NewKunde(supply, kunden.SelectedItem as Kunde);
                 kWindow.Show();
             }
             else
@@ -167,8 +166,7 @@ namespace BS_Artikelverwaltung
         {
             if (bestellungen.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
-                NewBestellung bWindow = new NewBestellung(supply, dummy.bestellungen[bestellungen.SelectedIndex]);
+                NewBestellung bWindow = new NewBestellung(supply, bestellungen.SelectedItem as Bestellung);
                 bWindow.Show();
             }
             else
@@ -181,9 +179,7 @@ namespace BS_Artikelverwaltung
         {
             if (bestellpos.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
-                Bestellung dully = dummy.bestellungen[bestellungen.SelectedIndex];
-                Bestellposition duffy = dully.positionen[bestellpos.SelectedIndex];
+                Bestellposition duffy = bestellpos.SelectedItem as Bestellposition;
                 NewArtikel aWindow = new NewArtikel(supply, duffy.artikel);
                 aWindow.Show();
             }
@@ -196,6 +192,16 @@ namespace BS_Artikelverwaltung
         private void txtKundeSuche_TextChanged(object sender, TextChangedEventArgs e)
         {
             kunden.ItemsSource = supply.searchKunden(txtKundeSuche.Text);
+        }
+
+        private void txtBestellungSuche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bestellungen.ItemsSource = supply.searchBestellungen(kunden.SelectedItem as Kunde, txtBestellungSuche.Text);
+        }
+
+        private void txtArtikelSuche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bestellpos.ItemsSource = supply.searchBespos(bestellungen.SelectedItem as Bestellung, txtArtikelSuche.Text);
         }
     }
 }

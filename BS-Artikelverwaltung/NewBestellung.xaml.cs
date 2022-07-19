@@ -51,8 +51,7 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveBestellung_Click(object sender, RoutedEventArgs e)
         {
-            Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
-
+            Kunde dummy = kunden.SelectedItem as Kunde;
             bestellung.kundenId = dummy.id;
             bestellung.datum = Convert.ToDateTime(txtDatum.Text);
             bestellung.ausgeliefert = Convert.ToBoolean(cbxAusgeliefert.IsChecked);
@@ -65,7 +64,7 @@ namespace BS_Artikelverwaltung
         {
             if (artikel.SelectedIndex > -1)
             {
-                Artikel a = supply.getArtikelFromIndex(artikel.SelectedIndex);
+                Artikel a = artikel.SelectedItem as Artikel;
                 Bestellposition bp = new Bestellposition("-1;" + bestellung.id.ToString() + ";" + a.id.ToString() + ";" + txtAnzahl.Text);
                 bp.artikel = a;
                 bestellung.positionen.Add(bp);
@@ -81,7 +80,7 @@ namespace BS_Artikelverwaltung
         {
             if (kunden.SelectedIndex > -1)
             {
-                Kunde dummy = supply.getKundeFromIndex(kunden.SelectedIndex);
+                Kunde dummy = kunden.SelectedItem as Kunde;
                 txtIDBestellungKunde.Text = dummy.id.ToString();
             }
         }
