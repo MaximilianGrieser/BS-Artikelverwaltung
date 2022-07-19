@@ -23,14 +23,14 @@ namespace BS_Artikelverwaltung
         Supplier supply;
         Bestellung bestellung;
 
-        public NewBestellung(Supplier supply)
+        public NewBestellung(Supplier supply, int newID)
         {
             this.supply = supply;
-            this.bestellung = new Bestellung("-1;-1;-1;-1");
+            this.bestellung = new Bestellung(newID + ";-1;-1;-1");
             InitializeComponent();
             kunden.ItemsSource = supply.getKunden();
             artikel.ItemsSource = supply.getArtikel();
-
+            txtIDBestellung.Text = newID.ToString();
             txtDatum.Text = DateTime.Now.ToString();
         }
         public NewBestellung(Supplier supply, Bestellung bestellung)
@@ -65,7 +65,8 @@ namespace BS_Artikelverwaltung
             if (artikel.SelectedIndex > -1)
             {
                 Artikel a = artikel.SelectedItem as Artikel;
-                Bestellposition bp = new Bestellposition("-1;" + bestellung.id.ToString() + ";" + a.id.ToString() + ";" + txtAnzahl.Text);
+                int newID = supply.getNewBesPosID();
+                Bestellposition bp = new Bestellposition(newID + ";" + bestellung.id.ToString() + ";" + a.id.ToString() + ";" + txtAnzahl.Text);
                 bp.artikel = a;
                 bestellung.positionen.Add(bp);
                 bestellpos.ItemsSource = bestellung.positionen;
@@ -74,6 +75,7 @@ namespace BS_Artikelverwaltung
             {
                 MessageBox.Show("Bitte wähle zuerst einen Artikel");
             }
+            txtAnzahl.Text = "";
         }
 
         private void kunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,6 +94,11 @@ namespace BS_Artikelverwaltung
                 txtAnzahl.Text = bestellung.positionen[bestellpos.SelectedIndex].anzahl.ToString();
                 artikel.SelectedIndex = supply.getIndexFromArtikelID(bestellung.positionen[bestellpos.SelectedIndex].artikel.id);
             }
+        }
+
+        private void txtKundeSuche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            kunden.ItemsSource = supply.searchKunden(txtKundeSuche.Text);
         }
     }
 }

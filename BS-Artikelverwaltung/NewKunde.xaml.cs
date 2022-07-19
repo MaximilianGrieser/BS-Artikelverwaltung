@@ -20,11 +20,12 @@ namespace BS_Artikelverwaltung
     {
         Supplier supply;
 
-        public NewKunde(Supplier supply)
+        public NewKunde(Supplier supply, int newID)
         {
             this.supply = supply;
             InitializeComponent();
             lblKunde.Content = "Neuen Kunden Erstellen:";
+            txtIDKunde.Text = newID.ToString();
         }
 
         public NewKunde(Supplier supply, Kunde kunde)
@@ -42,15 +43,7 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveKunde_Click(object sender, RoutedEventArgs e)
         {
-            string line;
-            if (txtIDKunde.Text != "")
-            {
-                line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
-            }
-            else
-            {
-                line = "-1;" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
-            }
+            string line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
             Kunde k = new Kunde(line);
             supply.writeKundeToList(k);
             this.Close();

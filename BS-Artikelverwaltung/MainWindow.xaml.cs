@@ -24,11 +24,9 @@ namespace BS_Artikelverwaltung
     //- Artikel List mit artikel bezeichnung und anzahl ergänzen
     //- NewBestellung edit bespos
     //- NewBestellung delete bespos
-    //- NewBestellung leere Bestellung speichern bug
     //- Objekte löschen ?
-    //- User Error abfangen
-    //- Kunden suche bei neuer bestellung
-    //- Artikel suche bei neuer bestellung
+    //-- User Error abfangen
+    //- Artikel suche bei neuer bestellung 
 
 
 
@@ -133,19 +131,19 @@ namespace BS_Artikelverwaltung
 
         private void btnNewKunde_Click(object sender, RoutedEventArgs e)
         {
-            NewKunde kWindow = new NewKunde(supply);
+            NewKunde kWindow = new NewKunde(supply, supply.getNewKundeID());
             kWindow.ShowDialog();
         }
 
         private void btnNewBestellung_Click(object sender, RoutedEventArgs e)
         {
-            NewBestellung bWindow = new NewBestellung(supply);
+            NewBestellung bWindow = new NewBestellung(supply, supply.getNewBesID());
             bWindow.ShowDialog();
         }
 
         private void btnNewArtikel_Click(object sender, RoutedEventArgs e)
         {
-            NewArtikel aWindow = new NewArtikel(supply);
+            NewArtikel aWindow = new NewArtikel(supply, supply.getNewArtikelID());
             aWindow.ShowDialog();
         }
 

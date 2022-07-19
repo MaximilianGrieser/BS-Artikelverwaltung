@@ -20,11 +20,12 @@ namespace BS_Artikelverwaltung
     {
         Supplier supply;
 
-        public NewArtikel(Supplier supply)
+        public NewArtikel(Supplier supply, int newID)
         {
             this.supply = supply;
             InitializeComponent();
             lblArtikel.Content = "Neuen Artikel Erstellen:";
+            txtIDArtikel.Text = newID.ToString();
         }
 
         public NewArtikel(Supplier supply, Artikel artikel)
@@ -42,15 +43,7 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveArtikel_Click(object sender, RoutedEventArgs e)
         {
-            string line;
-            if (txtIDArtikel.Text != "")
-            {
-                line = txtIDArtikel.Text + ";" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
-            }
-            else
-            {
-                line = "-1;" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
-            }
+            string line = txtIDArtikel.Text + ";" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
             Artikel a = new Artikel(line);
             supply.writeArtikelToList(a);
             this.Close();

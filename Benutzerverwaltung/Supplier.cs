@@ -5,14 +5,17 @@ using System.Text;
 using System.IO;
 using System.Linq;
 
-namespace Benutzerverwaltung {
-    public class Supplier {
+namespace Benutzerverwaltung
+{
+    public class Supplier
+    {
         public ObservableCollection<Kunde> kunden = new ObservableCollection<Kunde>();
         public ObservableCollection<Artikel> artikel = new ObservableCollection<Artikel>();
         public ObservableCollection<Bestellung> bestellungen = new ObservableCollection<Bestellung>();
         public ObservableCollection<Bestellposition> bestellpos = new ObservableCollection<Bestellposition>();
 
-        public Supplier() {
+        public Supplier()
+        {
             readCSV(this.kunden, "kunden.csv");
             readCSV(this.bestellungen, "bestellungen.csv");
             readCSV(this.artikel, "artikel.csv");
@@ -20,7 +23,8 @@ namespace Benutzerverwaltung {
             buildConstruct();
         }
 
-        public ObservableCollection<Kunde> getKunden() {
+        public ObservableCollection<Kunde> getKunden()
+        {
             return kunden;
         }
 
@@ -81,60 +85,74 @@ namespace Benutzerverwaltung {
             return artikel.IndexOf(artikel.Where(i => i.id == id).FirstOrDefault());
         }
 
+        public int getNewKundeID()
+        {
+            //Assuming list is orderd ascending by Kunden IDs
+            int lastID = kunden.Last().id;
+            return lastID + 1;
+        }
+
         public void writeKundeToList(Kunde kunde)
         {
-            if (kunde.id == -1)
+            if (kunden.Where(i => i.id == kunde.id).FirstOrDefault() != null)
             {
                 kunden[kunden.IndexOf(kunden.Where(i => i.id == kunde.id).FirstOrDefault())] = kunde;
             }
             else
             {
-                //Assuming list is orderd ascending by Kunden IDs
-                int lastID = kunden.Last().id;
-                kunde.id = lastID + 1;
                 kunden.Add(kunde);
             }
         }
 
+        public int getNewArtikelID()
+        {
+            //Assuming list is orderd ascending by Artikel IDs
+            int lastID = artikel.Last().id;
+            return lastID + 1;
+        }
+
         public void writeArtikelToList(Artikel a)
         {
-            if (a.id == -1)
+            if (artikel.Where(i => i.id == a.id).FirstOrDefault() != null)
             {
                 artikel[artikel.IndexOf(artikel.Where(i => i.id == a.id).FirstOrDefault())] = a;
+                buildBespos();
             }
             else
             {
-                //Assuming list is orderd ascending by Artikel IDs
-                int lastID = artikel.Last().id;
-                a.id = lastID + 1;
                 artikel.Add(a);
             }
         }
 
+        public int getNewBesID()
+        {
+            //Assuming list is orderd ascending by Bestellungen IDs
+            int lastID = bestellungen.Last().id;
+            return lastID + 1;
+        }
+
+        public int getNewBesPosID()
+        {
+            //Assuming list is orderd ascending by Bestellpositionen IDs
+            int lastID = bestellpos.Last().id;
+            return lastID + 1;
+        }
         public void writeBestellungToList(Bestellung b)
         {
             foreach (Bestellposition bp in b.positionen)
             {
-                if (bp.id == -1)
-                {
-                    //Assuming list is orderd ascending by Bestellpositionen IDs
-                    int lastID = bestellpos.Last().id;
-                    bp.id = lastID + 1;
-                    bestellpos.Add(bp);
-                }
+                //impossible to eddit bespos -> all are new
+                bestellpos.Add(bp);
             }
 
-            if (b.id != -1)
+            if (bestellungen.Where(i => i.id == b.id).FirstOrDefault() != null)
             {
                 bestellungen[bestellungen.IndexOf(bestellungen.Where(i => i.id == b.id).FirstOrDefault())] = b;
             }
             else
             {
-                //Assuming list is orderd ascending by Bestellungen IDs
-                int lasID = bestellungen.Last().id;
-                b.id = lasID + 1;
                 bestellungen.Add(b);
-            }            
+            }
             buildConstruct();
         }
 
@@ -148,18 +166,26 @@ namespace Benutzerverwaltung {
             {
                 b.assignBestellpos(bestellpos);
             }
+            buildBespos();
+        }
+
+        void buildBespos()
+        {
             foreach (Bestellposition bpos in bestellpos)
             {
                 bpos.assignArtikel(artikel);
             }
         }
 
-        private void readCSV<T>(ObservableCollection<T> list, string dateiname) {
+        private void readCSV<T>(ObservableCollection<T> list, string dateiname)
+        {
             list.Clear();
             string[] csv = File.ReadAllLines(dateiname);
             int count = 0;
-            foreach (string s in csv) {
-                if (count == 0) {
+            foreach (string s in csv)
+            {
+                if (count == 0)
+                {
                     count = 1;
                     continue;
                 }
