@@ -59,12 +59,25 @@ namespace Benutzerverwaltung
         public ObservableCollection<Bestellposition> searchBespos(Bestellung b, string searchWord)
         {
             ObservableCollection<Bestellposition> results = new ObservableCollection<Bestellposition>();
-            string swUpper = searchWord.ToUpper();
             foreach (Bestellposition bp in b.positionen)
             {
                 if (bp.id.ToString().Contains(searchWord))
                 {
                     results.Add(bp);
+                }
+            }
+            return results;
+        }
+
+        public ObservableCollection<Artikel> searchArtikel(string searchWord)
+        {
+            ObservableCollection<Artikel> results = new ObservableCollection<Artikel>();
+            string swUpper = searchWord.ToUpper();
+            foreach (Artikel a in artikel)
+            {
+                if (a.id.ToString().Contains(searchWord) || a.bezeichnung.ToUpper().Contains(swUpper) || a.bestand.ToString().Contains(searchWord))
+                {
+                    results.Add(a);
                 }
             }
             return results;

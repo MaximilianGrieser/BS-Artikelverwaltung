@@ -51,29 +51,52 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveBestellung_Click(object sender, RoutedEventArgs e)
         {
-            Kunde dummy = kunden.SelectedItem as Kunde;
-            bestellung.kundenId = dummy.id;
-            bestellung.datum = Convert.ToDateTime(txtDatum.Text);
-            bestellung.ausgeliefert = Convert.ToBoolean(cbxAusgeliefert.IsChecked);
+            if (kunden.SelectedIndex > -1)
+            {
+                if (validateInput(bestellung))
+                {
+                    Kunde dummy = kunden.SelectedItem as Kunde;
+                    bestellung.kundenId = dummy.id;
+                    bestellung.datum = Convert.ToDateTime(txtDatum.Text);
+                    bestellung.ausgeliefert = Convert.ToBoolean(cbxAusgeliefert.IsChecked);
 
-            supply.writeBestellungToList(bestellung);
-            this.Close();
+                    supply.writeBestellungToList(bestellung);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Bitte eingaben überprüfen!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte wähle einen Kunden");
+            }
         }
 
         private void btnAddArtikelToBestellung_Click(object sender, RoutedEventArgs e)
         {
             if (artikel.SelectedIndex > -1)
             {
-                Artikel a = artikel.SelectedItem as Artikel;
-                int newID = supply.getNewBesPosID();
-                Bestellposition bp = new Bestellposition(newID + ";" + bestellung.id.ToString() + ";" + a.id.ToString() + ";" + txtAnzahl.Text);
-                bp.artikel = a;
-                bestellung.positionen.Add(bp);
-                bestellpos.ItemsSource = bestellung.positionen;
+                if (String.IsNullOrEmpty(txtAnzahl.Text))
+                {
+                    MessageBox.Show("Bitte Anzahl eingeben");
+                    txtAnzahl.BorderBrush = System.Windows.Media.Brushes.Red;
+                }
+                else
+                {
+                    txtAnzahl.ClearValue(Border.BorderBrushProperty);
+                    Artikel a = artikel.SelectedItem as Artikel;
+                    int newID = supply.getNewBesPosID();
+                    Bestellposition bp = new Bestellposition(newID + ";" + bestellung.id.ToString() + ";" + a.id.ToString() + ";" + txtAnzahl.Text);
+                    bp.artikel = a;
+                    bestellung.positionen.Add(bp);
+                    bestellpos.ItemsSource = bestellung.positionen;
+                }
             }
             else
             {
-                MessageBox.Show("Bitte wähle zuerst einen Artikel");
+                MessageBox.Show("Bitte wähle einen Artikel");
             }
             txtAnzahl.Text = "";
         }
@@ -99,6 +122,29 @@ namespace BS_Artikelverwaltung
         private void txtKundeSuche_TextChanged(object sender, TextChangedEventArgs e)
         {
             kunden.ItemsSource = supply.searchKunden(txtKundeSuche.Text);
+        }
+
+        private void txtArtikelSuche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            artikel.ItemsSource = supply.searchArtikel(txtArtikelSuche.Text);
+        }
+
+        private bool validateInput(Bestellung b)
+        {
+            bool valid = true;
+
+            if (String.IsNullOrEmpty(txtDatum.Text))
+            {
+                valid = false;
+                txtDatum.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            if (b.positionen.Count == 0)
+            {
+                valid = false;
+                bestellpos.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+
+            return valid;
         }
     }
 }

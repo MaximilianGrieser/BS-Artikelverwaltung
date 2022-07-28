@@ -43,10 +43,61 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveArtikel_Click(object sender, RoutedEventArgs e)
         {
-            string line = txtIDArtikel.Text + ";" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
-            Artikel a = new Artikel(line);
-            supply.writeArtikelToList(a);
-            this.Close();
+            if (validateInput())
+            {
+                string line = txtIDArtikel.Text + ";" + txtBeschreibung.Text + ";" + txtGewicht.Text + ";" + txtBestand.Text + ";" + txtPreis.Text;
+                Artikel a = new Artikel(line);
+                supply.writeArtikelToList(a);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Bitte eingaben überprüfen!");
+            }
+        }
+
+        private bool validateInput()
+        {
+            bool valid = true;
+
+            if (String.IsNullOrEmpty(txtBeschreibung.Text))
+            {
+                valid = false;
+                txtBeschreibung.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtBeschreibung.ClearValue(Border.BorderBrushProperty);
+            }
+            if (String.IsNullOrEmpty(txtGewicht.Text))
+            {
+                valid = false;
+                txtGewicht.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtGewicht.ClearValue(Border.BorderBrushProperty);
+            }
+            if (String.IsNullOrEmpty(txtBestand.Text))
+            {
+                valid = false;
+                txtBestand.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtBestand.ClearValue(Border.BorderBrushProperty);
+            }
+            if (String.IsNullOrEmpty(txtPreis.Text))
+            {
+                valid = false;
+                txtPreis.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtPreis.ClearValue(Border.BorderBrushProperty);
+            }
+
+            return valid;
         }
     }
 }

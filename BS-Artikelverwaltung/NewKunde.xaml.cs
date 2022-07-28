@@ -43,10 +43,61 @@ namespace BS_Artikelverwaltung
 
         private void btnSaveKunde_Click(object sender, RoutedEventArgs e)
         {
-            string line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
-            Kunde k = new Kunde(line);
-            supply.writeKundeToList(k);
-            this.Close();
+            if (validateInput())
+            {
+                string line = txtIDKunde.Text + ";" + txtNachname.Text + ";" + txtVorname.Text + ";" + txtgeburt.Text + ";" + txtStadt.Text;
+                Kunde k = new Kunde(line);
+                supply.writeKundeToList(k);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Bitte eingaben überprüfen!");
+            }
+        }
+
+        private bool validateInput()
+        {
+            bool valid = true;
+
+            if (String.IsNullOrEmpty(txtNachname.Text))
+            {
+                valid = false;
+                txtNachname.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtNachname.ClearValue(Border.BorderBrushProperty);
+            }
+            if (String.IsNullOrEmpty(txtVorname.Text))
+            {
+                valid = false;
+                txtVorname.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtVorname.ClearValue(Border.BorderBrushProperty);
+            }
+            if (String.IsNullOrEmpty(txtgeburt.Text))
+            {
+                valid = false;
+                txtgeburt.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtgeburt.ClearValue(Border.BorderBrushProperty);
+            }
+            if (String.IsNullOrEmpty(txtStadt.Text))
+            {
+                valid = false;
+                txtStadt.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                txtStadt.ClearValue(Border.BorderBrushProperty);
+            }
+
+            return valid;
         }
     }
 }

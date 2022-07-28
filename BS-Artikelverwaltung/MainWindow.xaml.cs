@@ -25,8 +25,7 @@ namespace BS_Artikelverwaltung
     //- NewBestellung edit bespos
     //- NewBestellung delete bespos
     //- Objekte löschen ?
-    //-- User Error abfangen
-    //- Artikel suche bei neuer bestellung 
+    //- Alternative SQL-Mode
 
 
 
