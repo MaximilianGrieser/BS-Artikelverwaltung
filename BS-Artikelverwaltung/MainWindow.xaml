@@ -194,6 +194,12 @@
                             <Label Name="id" 
                                Content="{Binding id, Mode=OneWay}"
                                Grid.Column="0"></Label>
+                            <Label Name="artikelBez" 
+                               Content="{Binding artikelBez, Mode=OneWay}"
+                               Grid.Column="0"></Label>
+                            <Label Name="anzahl" 
+                               Content="{Binding anzahl, Mode=OneWay}"
+                               Grid.Column="0"></Label>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

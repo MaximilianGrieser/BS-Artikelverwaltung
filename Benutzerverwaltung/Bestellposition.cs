@@ -33,12 +33,14 @@ namespace Benutzerverwaltung {
         public int idbestellung { get; set; }
         public int idartikel { get; set; }
         public int anzahl { get; set; }
+        public string artikelBez { get; set; }
 
         public void assignArtikel(ObservableCollection<Artikel> best) {
             this.artikel = null;
             foreach (Artikel art in best) {
                 if (art.id == this.idartikel) {
                     this.artikel = art;
+                    this.artikelBez = art.bezeichnung;
                 }
             }
         }

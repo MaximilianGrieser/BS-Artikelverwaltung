@@ -21,7 +21,6 @@ namespace BS_Artikelverwaltung
     //- Splashscreen
     //- Save To File
     //- Label Font Size anpassung allgemein
-    //- Artikel List mit artikel bezeichnung und anzahl ergänzen
     //- NewBestellung edit bespos
     //- NewBestellung delete bespos
     //- Objekte löschen ?
