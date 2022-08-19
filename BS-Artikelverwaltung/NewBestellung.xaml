@@ -88,17 +88,27 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <ListBox Grid.Column="0" Grid.Row="0" Name="bestellpos" SelectionChanged="bestellpos_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <Label Name="id" 
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <ListBox Grid.Column="0" Grid.Row="0" Name="bestellpos" SelectionChanged="bestellpos_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Label Name="id" 
                                Content="{Binding id, Mode=OneWay}"
                                Grid.Column="0"></Label>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Grid.Column="0" Grid.Row="1" Name="btnDeleteBespos" Click="btnDeleteBespos_Click">BesPos Löschen</Button>
+            </Grid>
             <Grid Grid.Column="1" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />

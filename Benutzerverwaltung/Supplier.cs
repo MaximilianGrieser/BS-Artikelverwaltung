@@ -144,18 +144,40 @@ namespace Benutzerverwaltung
             return lastID + 1;
         }
 
-        public int getNewBesPosID()
+        public Bestellposition getNewBesPos(int artikelID, int bestellID, int anzahl)
         {
             //Assuming list is orderd ascending by Bestellpositionen IDs
             int lastID = bestellpos.Last().id;
-            return lastID + 1;
+            Artikel a = artikel.Where(i => i.id == artikelID).FirstOrDefault();
+            if (a.bestand >= anzahl)
+            {
+                a.bestand = a.bestand - anzahl;
+                Bestellposition bp = new Bestellposition(lastID + 1 + ";" + bestellID + ";" + artikelID + ";" + anzahl);
+                bestellpos.Add(bp);
+                return bp;
+            }
+            else
+            {
+                return null;
+            }
         }
-        public void writeBestellungToList(Bestellung b)
+        public void writeBestellungToList(Bestellung b, List<int> removed)
         {
+            foreach (int bp in removed)
+            {
+                bestellpos.Remove(bestellpos.Where(i => i.id == bp).FirstOrDefault());
+            }
+
             foreach (Bestellposition bp in b.positionen)
             {
-                //impossible to eddit bespos -> all are new
-                bestellpos.Add(bp);
+                if (bestellpos.Where(i => i.id == bp.id).FirstOrDefault() != null)
+                {
+                    bestellpos[bestellpos.IndexOf(bestellpos.Where(i => i.id == bp.id).FirstOrDefault())] = bp;
+                }
+                else
+                {
+                    bestellpos.Add(bp);
+                }
             }
 
             if (bestellungen.Where(i => i.id == b.id).FirstOrDefault() != null)

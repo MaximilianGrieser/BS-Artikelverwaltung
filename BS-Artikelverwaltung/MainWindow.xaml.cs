@@ -22,10 +22,8 @@ namespace BS_Artikelverwaltung
     //- Save To File
     //- Label Font Size anpassung allgemein
     //- NewBestellung edit bespos
-    //- NewBestellung delete bespos
     //- Objekte löschen ?
     //- Alternative SQL-Mode
-
 
 
     /// <summary>

@@ -22,6 +22,7 @@ namespace BS_Artikelverwaltung
     {
         Supplier supply;
         Bestellung bestellung;
+        List<int> removedBesPos = new List<int>();
 
         public NewBestellung(Supplier supply, int newID)
         {
@@ -49,6 +50,9 @@ namespace BS_Artikelverwaltung
             cbxAusgeliefert.IsChecked = bestellung.ausgeliefert;
         }
 
+        public void refreshBestand() { 
+        }
+
         private void btnSaveBestellung_Click(object sender, RoutedEventArgs e)
         {
             if (kunden.SelectedIndex > -1)
@@ -59,8 +63,7 @@ namespace BS_Artikelverwaltung
                     bestellung.kundenId = dummy.id;
                     bestellung.datum = Convert.ToDateTime(txtDatum.Text);
                     bestellung.ausgeliefert = Convert.ToBoolean(cbxAusgeliefert.IsChecked);
-
-                    supply.writeBestellungToList(bestellung);
+                    supply.writeBestellungToList(bestellung, removedBesPos);
                     this.Close();
                 }
                 else
@@ -87,11 +90,20 @@ namespace BS_Artikelverwaltung
                 {
                     txtAnzahl.ClearValue(Border.BorderBrushProperty);
                     Artikel a = artikel.SelectedItem as Artikel;
-                    int newID = supply.getNewBesPosID();
-                    Bestellposition bp = new Bestellposition(newID + ";" + bestellung.id.ToString() + ";" + a.id.ToString() + ";" + txtAnzahl.Text);
-                    bp.artikel = a;
-                    bestellung.positionen.Add(bp);
-                    bestellpos.ItemsSource = bestellung.positionen;
+                    Bestellposition newPB = supply.getNewBesPos(a.id, bestellung.id, Convert.ToInt32(txtAnzahl.Text));
+                    artikel.ItemsSource = null;
+                    artikel.ItemsSource = supply.getArtikel();
+                    if (newPB != null)
+                    {
+                        newPB.artikel = a;
+                        bestellung.positionen.Add(newPB);
+                        bestellpos.ItemsSource = bestellung.positionen;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bestand Nicht Ausreichend!");
+                    }
+
                 }
             }
             else
@@ -145,6 +157,19 @@ namespace BS_Artikelverwaltung
             }
 
             return valid;
+        }
+
+        private void btnDeleteBespos_Click(object sender, RoutedEventArgs e)
+        {
+            if (bestellpos.SelectedIndex > -1)
+            {
+                removedBesPos.Add((bestellpos.SelectedItem as Bestellposition).id);
+                bestellung.positionen.RemoveAt(bestellpos.SelectedIndex);
+            }
+            else
+            {
+                MessageBox.Show("Bitte wähle eine BestellPos");
+            }
         }
     }
 }
