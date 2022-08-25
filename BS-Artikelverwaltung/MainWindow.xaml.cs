@@ -18,7 +18,6 @@ using Benutzerverwaltung;
 namespace BS_Artikelverwaltung
 {
     //TODOS
-    //- Splashscreen
     //- Save To File
     //- Label Font Size anpassung allgemein
     //- NewBestellung edit bespos
@@ -31,17 +30,20 @@ namespace BS_Artikelverwaltung
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Supplier supply = new Supplier();
+        private Supplier supply;
 
         public MainWindow()
         {
-            //var splashScreen = new SplashScreen("memes-loading.gif");
-            //splashScreen.Show(false);
-
+            if (Environment.GetCommandLineArgs().Length > 1 && Environment.GetCommandLineArgs()[2] == "sql")
+            {
+                this.supply = new Supplier(true);
+            }
+            else
+            {
+                this.supply = new Supplier(false);
+            }
             InitializeComponent();
             kunden.ItemsSource = supply.getKunden();
-
-            //splashScreen.Close(TimeSpan.FromSeconds(1));
         }
 
         private void kunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -196,6 +198,24 @@ namespace BS_Artikelverwaltung
         private void txtArtikelSuche_TextChanged(object sender, TextChangedEventArgs e)
         {
             bestellpos.ItemsSource = supply.searchBespos(bestellungen.SelectedItem as Bestellung, txtArtikelSuche.Text);
+        }
+
+        private void btnDeleteKunde_Click(object sender, RoutedEventArgs e)
+        {
+            if (kunden.SelectedIndex > -1)
+            {
+                if (MessageBox.Show("Wirklich Löschen?",
+                    "Löschen",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
+                {
+                    MessageBox.Show("Löschen");
+                }
+            }
+            else
+            {
+                //TODO
+            }
         }
     }
 }

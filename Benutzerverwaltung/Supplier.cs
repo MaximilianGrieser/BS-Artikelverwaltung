@@ -14,12 +14,24 @@ namespace Benutzerverwaltung
         public ObservableCollection<Bestellung> bestellungen = new ObservableCollection<Bestellung>();
         public ObservableCollection<Bestellposition> bestellpos = new ObservableCollection<Bestellposition>();
 
-        public Supplier()
+        public Supplier(bool isSQL)
         {
-            readCSV(this.kunden, "kunden.csv");
-            readCSV(this.bestellungen, "bestellungen.csv");
-            readCSV(this.artikel, "artikel.csv");
-            readCSV(this.bestellpos, "bestellpositionen.csv");
+            if (isSQL)
+            {
+                DB_Handler db = new DB_Handler();
+                //this.kunden = db.getKunden();
+                //this.kunden = db.getArtikel();
+                //this.kunden = db.getBestellungen();
+                //this.kunden = db.getBestellpositionen();
+            }
+            else
+            {
+                readCSV(this.kunden, "kunden.csv");
+                readCSV(this.bestellungen, "bestellungen.csv");
+                readCSV(this.artikel, "artikel.csv");
+                readCSV(this.bestellpos, "bestellpositionen.csv");
+            }
+
             buildConstruct();
         }
 

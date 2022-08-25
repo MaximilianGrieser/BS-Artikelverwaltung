@@ -16,6 +16,8 @@ namespace Benutzerverwaltung {
             this.vorname = item[2];
             this.geburtsdatum = Convert.ToDateTime(item[3]);
             this.stadt = item[4];
+            //DB_Handler db = new DB_Handler();
+            //db.addKunde(item[0], item[1], item[2], item[3], item[4]);
         }
 
         public int id { get; set; }

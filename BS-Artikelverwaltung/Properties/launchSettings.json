@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "BS-Artikelverwaltung": {
+      "commandName": "Project"
+    },
+    "SQL-Mode": {
+      "commandName": "Project",
+      "commandLineArgs": "-m sql"
+    }
+  }
+}
