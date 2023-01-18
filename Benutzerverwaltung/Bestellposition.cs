@@ -26,7 +26,8 @@ namespace Benutzerverwaltung {
             this.idbestellung = Convert.ToInt32(einzeln[1]);
             this.idartikel = Convert.ToInt32(einzeln[2]);
             this.anzahl = Convert.ToInt32(einzeln[3]);
-
+            //DB_Handler db = new DB_Handler();
+            //db.addbspos(this.id, this.idbestellung, this.idartikel, this.anzahl);
         }
 
         public int id { get; set; }

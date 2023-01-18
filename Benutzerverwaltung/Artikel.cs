@@ -24,6 +24,8 @@ namespace Benutzerverwaltung {
             this.gewicht = Convert.ToInt32(einzeln[2]);
             this.bestand = Convert.ToInt32(einzeln[3]);
             this.preis = Double.Parse(einzeln[4]);
+            //DB_Handler db = new DB_Handler();
+            //db.addArtikel(this.id, this.gewicht, this.bestand, this.bezeichnung, this.preis);
         }
 
         public int id { get; set; }
