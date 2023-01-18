@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using MySql.Data.MySqlClient;
-
+using System.Text.Encodings;
 namespace Benutzerverwaltung
 {
     class DB_Handler
@@ -18,7 +19,8 @@ namespace Benutzerverwaltung
 
         public DB_Handler()
         {
-            string connectionString = @"SERVER=localhost;DATABASE=artikelverwaltung;UID=root;Password=;";
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            string connectionString = @"SERVER=localhost;DATABASE=artikelverwaltung;UID=root;Password=;convert zero datetime=True";
             this.con = new MySqlConnection(connectionString);
         }
 
@@ -53,7 +55,7 @@ namespace Benutzerverwaltung
             this.con.Close();
         }
 
-        public void addbestellung(int id, int kundenId, DateTime datum, bool ausgeliefert) {
+        public void addbestellung(int id, int kundenId, string datum, bool ausgeliefert) {
             MySqlCommand cmd = new MySqlCommand("INSERT INTO bestellung (ID, kundenId, datum, ausgeliefert) VALUES ('" + id.ToString() + "','" + kundenId.ToString() + "','" + datum.ToString() + "','" + ausgeliefert.ToString() + "')", this.con);
 
             cmd.Connection.Open();
@@ -74,12 +76,36 @@ namespace Benutzerverwaltung
 
             while (reader.Read())
             {
-                //kunden.Add(reader.getData());
+                Kunde k = new Kunde(reader["id"].ToString(), reader["lastname"].ToString(), reader["firstname"].ToString(), reader["birthdate"].ToString(), reader["city"].ToString());
+                kunden.Add(k);
             }
 
             con.Close();
 
             return kunden;
+        }
+        public ObservableCollection<Bestellung> getBestellungen() {
+            ObservableCollection<Bestellung> bestellungen = new ObservableCollection<Bestellung>();
+            con.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM bestellung", con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+
+            while (reader.Read()) {
+                DateTime test;
+                DateTime.TryParse(reader["datum"].ToString(), out test);
+                //Trace.WriteLine(reader["datum"]);
+                Bestellung k = new Bestellung(Convert.ToInt32(reader["id"].ToString()),
+                                              Convert.ToInt32(reader["kundenId"].ToString()),
+                                              test, 
+                                              Convert.ToBoolean(reader["ausgeliefert"].ToString()));
+                bestellungen.Add(k);
+            }
+
+            con.Close();
+
+            return bestellungen;
         }
     }
 }

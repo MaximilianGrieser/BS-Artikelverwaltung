@@ -20,6 +20,15 @@ namespace Benutzerverwaltung {
             //db.addKunde(item[0], item[1], item[2], item[3], item[4]);
         }
 
+        public Kunde (string id, string nachname, string vorname, string geburtsdatum, string stadt) {
+            this.id = Convert.ToInt32(id);
+            this.nachname = nachname;
+            this.vorname = vorname;
+            this.geburtsdatum = Convert.ToDateTime(geburtsdatum);
+            this.stadt = stadt;
+
+        }
+
         public int id { get; set; }
         public string nachname { get; set; }
         public string vorname { get; set; }

@@ -21,15 +21,15 @@ namespace Benutzerverwaltung
                 DB_Handler db = new DB_Handler();
                 this.kunden = db.getKunden();
                 //this.kunden = db.getArtikel();
-                //this.kunden = db.getBestellungen();
+                this.bestellungen = db.getBestellungen();
                 //this.kunden = db.getBestellpositionen();
             }
             else
             {
-                readCSV(this.kunden, "kunden.csv");
+                //readCSV(this.kunden, "kunden.csv");
                 readCSV(this.bestellungen, "bestellungen.csv");
-                readCSV(this.artikel, "artikel.csv");
-                readCSV(this.bestellpos, "bestellpositionen.csv");
+                //readCSV(this.artikel, "artikel.csv");
+                //readCSV(this.bestellpos, "bestellpositionen.csv");
             }
 
             buildConstruct();

@@ -26,7 +26,7 @@ namespace Benutzerverwaltung {
             this.datum = birth;
             this.ausgeliefert = Convert.ToBoolean(Convert.ToInt32((einzeln[3])));
             //DB_Handler db = new DB_Handler();
-            //db.addbestellung(this.id, this.kundenId, this.datum, this.ausgeliefert);
+            //db.addbestellung(this.id, this.kundenId, einzeln[2], this.ausgeliefert);
         }
 
         public int id { get; set; }
