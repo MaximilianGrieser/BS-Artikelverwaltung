@@ -16,7 +16,6 @@ namespace Benutzerverwaltung
 
         public Supplier(bool isSQL)
         {
-            isSQL = true;
             if (isSQL)
             {
                 DB_Handler db = new DB_Handler();

@@ -25,6 +25,8 @@ namespace Benutzerverwaltung {
             DateTime.TryParse(einzeln[2], out birth);
             this.datum = birth;
             this.ausgeliefert = Convert.ToBoolean(Convert.ToInt32((einzeln[3])));
+            //DB_Handler db = new DB_Handler();
+            //db.addbestellung(this.id, this.kundenId, this.datum, this.ausgeliefert);
         }
 
         public int id { get; set; }
