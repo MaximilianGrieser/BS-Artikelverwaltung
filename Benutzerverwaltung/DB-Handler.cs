@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Benutzerverwaltung
 {
     class DB_Handler
     {
         //CREATE TABLE kunden (ID int, LastName varchar(255), FirstName varchar(255), Birthdate DATE, City varchar(255))
+        //CREATE TABLE Bestellung (ID int, kundenId int, datum Date, ausgeliefert Boolean)
+        //CREATE TABLE Bestellposition (ID int, idbestellung int, idartikel int, anzahl int, artikelBez text)
+        //CREATE TABLE Artikel (ID int, gewicht DOUBLE, bestand int, bezeichnung text, preis DOUBLE)
 
-
-        private SqlConnection con;
+        private MySqlConnection con;
 
         public DB_Handler()
         {
-            string connectionString = @"Data Source=db1516.mydbserver.com,1433;Initial Catalog=usr_p597408_4;User ID=p597408d1;Password=9#isC#uuc2pntd;";
-            this.con = new SqlConnection(connectionString);
+            string connectionString = @"SERVER=localhost;DATABASE=artikelverwaltung;UID=root;Password=;";
+            this.con = new MySqlConnection(connectionString);
         }
 
         public void addKunde(string id, string nachname, string vorname, string geburtsdatum, string stadt)
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO kunden (ID, LastName, FirstName, Birthdate, City) VALUES ('" + id + "','" + nachname + "','" + vorname + "','" + geburtsdatum + "','" + stadt + "',)", this.con);
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO kunden (ID, LastName, FirstName, Birthdate, City) VALUES ('" + id + "','" + nachname + "','" + vorname + "','" + geburtsdatum + "','" + stadt + "',)", this.con);
 
             cmd.Connection.Open();
 
@@ -33,11 +35,11 @@ namespace Benutzerverwaltung
         public ObservableCollection<Kunde> getKunden()
         {
             ObservableCollection<Kunde> kunden = new ObservableCollection<Kunde>();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FROM kunden", con);
-            SqlDataReader reader = cmd.ExecuteReader();
-
             con.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM kunden", con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
 
             while (reader.Read())
             {

@@ -16,10 +16,11 @@ namespace Benutzerverwaltung
 
         public Supplier(bool isSQL)
         {
+            isSQL = true;
             if (isSQL)
             {
                 DB_Handler db = new DB_Handler();
-                //this.kunden = db.getKunden();
+                this.kunden = db.getKunden();
                 //this.kunden = db.getArtikel();
                 //this.kunden = db.getBestellungen();
                 //this.kunden = db.getBestellpositionen();

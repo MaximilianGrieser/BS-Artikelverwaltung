@@ -106,6 +106,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "MySql.Data/6.4.3.0": {
+        "runtime": {
+          "MySql.Data.dll": {
+            "assemblyVersion": "6.4.3.0",
+            "fileVersion": "6.4.3.0"
+          }
+        }
       }
     }
   },
@@ -186,6 +194,11 @@
       "hashPath": "wpfanimatedgif.2.0.2.nupkg.sha512"
     },
     "Benutzerverwaltung/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MySql.Data/6.4.3.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
