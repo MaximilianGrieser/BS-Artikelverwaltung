@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.IO;
 using System.Linq;
+using CommonTypes;
+
 
 namespace Benutzerverwaltung
 {
@@ -18,11 +20,12 @@ namespace Benutzerverwaltung
         {
             if (isSQL)
             {
-                DB_Handler db = new DB_Handler();
+                IDBAdapter db = new MySqlAdapter();
+                db.connect();
                 this.kunden = db.getKunden();
-                //this.kunden = db.getArtikel();
+                this.artikel = db.getArtikel();
                 this.bestellungen = db.getBestellungen();
-                //this.kunden = db.getBestellpositionen();
+                this.bestellpos = db.getBestellposition();
             }
             else
             {

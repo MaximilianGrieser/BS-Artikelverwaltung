@@ -5,9 +5,13 @@ using System.Collections.ObjectModel;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System.Text.Encodings;
+using CommonTypes;
+
+
 namespace Benutzerverwaltung
+
 {
-    class DB_Handler
+    class MySqlAdapter : IDBAdapter
     {
         //CREATE DATABASE artikelverwaltung
         //CREATE TABLE kunden (ID int, LastName varchar(255), FirstName varchar(255), Birthdate DATE, City varchar(255))
@@ -17,8 +21,11 @@ namespace Benutzerverwaltung
 
         private MySqlConnection con;
 
-        public DB_Handler()
-        {
+        public MySqlAdapter() {
+            
+        }
+
+        public void connect() {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             string connectionString = @"SERVER=localhost;DATABASE=artikelverwaltung;UID=root;Password=;convert zero datetime=True";
             this.con = new MySqlConnection(connectionString);
@@ -45,7 +52,7 @@ namespace Benutzerverwaltung
             this.con.Close();
         }
 
-        public void addbspos(int id, int idbestellung, int idartikel, int anzahl) {
+        public void addBspos(int id, int idbestellung, int idartikel, int anzahl) {
             MySqlCommand cmd = new MySqlCommand("INSERT INTO bestellposition (ID, idbestellung, idartikel, anzahl) VALUES ('" + id.ToString() + "','" + idbestellung.ToString() + "','" + idartikel.ToString() + "','" + anzahl.ToString() + "')", this.con);
 
             cmd.Connection.Open();
@@ -55,7 +62,7 @@ namespace Benutzerverwaltung
             this.con.Close();
         }
 
-        public void addbestellung(int id, int kundenId, string datum, bool ausgeliefert) {
+        public void addBestellung(int id, int kundenId, string datum, bool ausgeliefert) {
             MySqlCommand cmd = new MySqlCommand("INSERT INTO bestellung (ID, kundenId, datum, ausgeliefert) VALUES ('" + id.ToString() + "','" + kundenId.ToString() + "','" + datum.ToString() + "','" + ausgeliefert.ToString() + "')", this.con);
 
             cmd.Connection.Open();
@@ -106,6 +113,49 @@ namespace Benutzerverwaltung
             con.Close();
 
             return bestellungen;
+        }
+
+        public ObservableCollection<Artikel> getArtikel() {
+            ObservableCollection<Artikel> artikel = new ObservableCollection<Artikel>();
+            con.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM artikel", con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+
+            while (reader.Read()) {
+                Artikel k = new Artikel(Convert.ToInt32(reader["id"].ToString()),
+                                        Convert.ToInt32(reader["gewicht"].ToString()), 
+                                        Convert.ToInt32(reader["bestand"].ToString()), 
+                                        reader["bezeichnung"].ToString(), 
+                                        Convert.ToDouble(reader["preis"].ToString()));
+                artikel.Add(k);
+            }
+
+            con.Close();
+
+            return artikel;
+        }
+
+        public ObservableCollection<Bestellposition> getBestellposition() {
+            ObservableCollection<Bestellposition> bestellpos = new ObservableCollection<Bestellposition>();
+            con.Open();
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM bestellposition", con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+
+            while (reader.Read()) {
+                Bestellposition k = new Bestellposition(Convert.ToInt32(reader["id"].ToString()),
+                                                        Convert.ToInt32(reader["idbestellung"].ToString()),
+                                                        Convert.ToInt32(reader["idartikel"].ToString()),
+                                                        Convert.ToInt32(reader["anzahl"].ToString()));
+                bestellpos.Add(k);
+            }
+
+            con.Close();
+
+            return bestellpos;
         }
     }
 }

@@ -19,8 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Benutzerverwaltung">
-      <HintPath>..\Benutzerverwaltung\bin\Debug\netcoreapp3.1\Benutzerverwaltung.dll</HintPath>
+    <Reference Include="CommonTypes">
+      <HintPath>..\CommonTypes\bin\Debug\netcoreapp3.1\CommonTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Controller">
+      <HintPath>..\Benutzerverwaltung\bin\Debug\netcoreapp3.1\Controller.dll</HintPath>
     </Reference>
   </ItemGroup>
 

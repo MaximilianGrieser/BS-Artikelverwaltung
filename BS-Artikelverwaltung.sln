@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS-Artikelverwaltung", "BS-Artikelverwaltung\BS-Artikelverwaltung.csproj", "{9F9E6726-F6E9-4448-B289-6CC1D507B254}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67FE46DE-E7F6-4E5A-BEA2-2D574089DB87} = {67FE46DE-E7F6-4E5A-BEA2-2D574089DB87}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTypes", "CommonTypes\CommonTypes.csproj", "{AB57C025-D311-45E0-A7B8-14355FCB53FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controller", "Benutzerverwaltung\Controller.csproj", "{67FE46DE-E7F6-4E5A-BEA2-2D574089DB87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{9F9E6726-F6E9-4448-B289-6CC1D507B254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F9E6726-F6E9-4448-B289-6CC1D507B254}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F9E6726-F6E9-4448-B289-6CC1D507B254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB57C025-D311-45E0-A7B8-14355FCB53FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB57C025-D311-45E0-A7B8-14355FCB53FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB57C025-D311-45E0-A7B8-14355FCB53FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB57C025-D311-45E0-A7B8-14355FCB53FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67FE46DE-E7F6-4E5A-BEA2-2D574089DB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FE46DE-E7F6-4E5A-BEA2-2D574089DB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FE46DE-E7F6-4E5A-BEA2-2D574089DB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FE46DE-E7F6-4E5A-BEA2-2D574089DB87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

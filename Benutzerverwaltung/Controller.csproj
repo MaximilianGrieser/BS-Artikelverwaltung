@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="CommonTypes">
+      <HintPath>..\CommonTypes\bin\Debug\netcoreapp3.1\CommonTypes.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\..\DatenbankAnbindung\DatenbankAnbindung\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>

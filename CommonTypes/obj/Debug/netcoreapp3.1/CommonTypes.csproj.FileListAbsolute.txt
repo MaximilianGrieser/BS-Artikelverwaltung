@@ -1,0 +1,10 @@
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\bin\Debug\netcoreapp3.1\CommonTypes.deps.json
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\bin\Debug\netcoreapp3.1\CommonTypes.dll
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\bin\Debug\netcoreapp3.1\CommonTypes.pdb
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.AssemblyInfoInputs.cache
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.AssemblyInfo.cs
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.csproj.CoreCompileInputs.cache
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.dll
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.pdb
+C:\Users\david\source\repos\crm\BS-Artikelverwaltung\CommonTypes\obj\Debug\netcoreapp3.1\CommonTypes.csproj.AssemblyReference.cache
